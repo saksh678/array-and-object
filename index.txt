@@ -1,0 +1,273 @@
+ 1. In the following shopping cart add, remove, and edit items
+ => const shoppingCart = ['Milk', 'Coffee', 'Tea', 'Honey']
+1. add 'Meat' in the beginning of your shopping cart if it has not been already adde
+2. add Sugar at the end of you shopping cart if it has not been already adde
+3. remove 'Honey' if you are allergic to hone
+4. modify Tea to 'Green Tea'.
+
+ans. // here is to add remove and edit items;
+//initaly shopping card is 
+
+let shoppingCart = ['Milk', 'Coffee', 'Tea', 'Honey'];
+
+//add meat at the begining in it is not added;
+ if (!shoppingCart.includes('Meat')){
+    shoppingCart.unshift('Meat');
+ }
+ //add sugar at the end 
+if (!shoppingCart.includes('Sugar')) {
+    shoppingCart.push('Sugar');
+}
+// remove 'Honey' if you are allergic to honey
+shoppingCart = shoppingCart.filter(item => item !== 'Honey');
+//replace tea to greentea
+shoppingCart = shoppingCart.map(item => item === 'Tea'? 'Green tea' : item);
+
+console.log(shoppingCart);
+
+output:=  ['Meat', 'Milk', 'Coffee', 'Green tea', 'Sugar']
+
+
+ 2. The following is an array of 10 students ages:
+ => const ages = [19, 22, 19, 24, 20, 25, 26, 24, 25, 24]
+ Sort the array and find the min and max age.
+ Find the median age(one middle item or two middle items divided by two).
+ Find the average age(all items divided by number of items).
+ Find the range of the ages(max minus min).
+ Compare the value of (min - average) and (max - average), use abs() method.
+ Ans.// the array of 10 students ages:
+
+const ages = [19, 22, 19, 24, 20, 25, 26, 24, 25, 24]
+// Sort the array and find the min and max age.
+ages.sort();
+console.log(ages);
+//find max and min age.
+let minAge =  ages[0];
+let maxAge = ages[ages.length - 1];
+
+console.log("minage:" ,minAge);
+console.log("maxage" ,maxAge);
+
+// find median age:
+
+let middleIndex = Math.floor(ages.length /2);
+let medianAge = ages.length % 2 === 0 ? (ages[middleIndex - 1] + ages[middleIndex]) / 2
+: ages[middleIndex];
+
+console.log("medianIndex:", medianAge);
+
+//find avarage age 
+const averageAge = ages.reduce((sum,age) => sum + age,
+0)/ages.length;
+
+console.log("average age:", averageAge);
+//find range of ages'
+const ageRange = maxAge - minAge;
+console.log(ageRange);
+//compare (min - average) and (max - average)
+
+const minDiff = Math.abs(minAge - averageAge);
+const maxDiff = Math.abs(maxAge - averageAge);
+
+console.log("(Min - Average):", minDiff);
+console.log("(Max - Average):", maxDiff);  
+
+// expexted output are
+
+(10) [19, 19, 20, 22, 24, 24, 24, 25, 25, 26]
+index.js:9 minage: 19
+index.js:10 maxage 26
+index.js:18 medianIndex: 24
+index.js:24 average age: 22.8
+index.js:27 7
+index.js:33 (Min - Average): 3.8000000000000007
+index.js:34 (Max - Average): 3.1999999999999993;
+
+3. Object Extensibility and Sealing
+ a) Use the Object.preventExtensions method to prevent any further additions of
+  properties to the student object.
+ b) Use the Object.isExtensible method to check if the student object is 
+ extensible. Store the result in a variable 
+called extensibleStatus.
+ c) Create a new object called teacher with a 'subject' property set to 'Math'.
+ d) Use the Object.seal method to seal the teacher object, preventing any 
+ additions or deletions of properties.
+ e) Use the Object.isSealed method to check if the teacher object is sealed.
+  Store the result in a variable called 
+sealedStatus.
+ f) Print the extensibleStatus and sealedStatus to the console
+
+ ans.
+//create a student object 
+const student = {
+    name : 'john deo',
+    age : 20,
+    grade: 'A',
+};
+
+// prevent any further additions of  properties to the student object.
+ 
+//student Object 
+Object.preventExtensions(student);
+
+//check the student object is extensible.
+const extensibleStatus = Object.isExtensible(student);
+
+//create a new teacher object
+const teacher = {
+    subject: 'math'
+};
+
+//seal the teacher object, preventing any  additions or deletions of properties.
+Object.seal(teacher);
+
+//check the teacher object is sealed
+const sealedStatus = Object.isSealed(teacher);
+
+console.log(extensibleStatus);
+console.log(sealedStatus);
+
+try {
+  student.newProperty = 'Test'; // This will silently fail
+  console.log("Student object extension attempted.");
+} catch (error) {
+  // No error will be thrown in strict mode
+  console.log("Student object extension failed.");
+}
+
+try {
+  delete teacher.subject; // This will silently fail
+  console.log("Teacher object property deletion attempted.");
+} catch (error) {
+  // No error will be thrown in strict mode
+  console.log("Teacher object property deletion failed.");
+}
+
+
+5. You are given a JavaScript object representing a student's information. 
+Your task is to use the 'for...in' loop to iterate over the properties 
+of the object and perform various operations . Create a function displayStudentInfo
+ that takes the student object as a parameter. Inside this function, use a 
+'for...in' loop to iterate over the properties of the student object and print
+ each property and its corresponding value to the console.
+The output should look something like this:
+
+ans.
+here you can displayStudentInfo function using a for...in loop:
+
+//student object
+const student = {
+     name: "Alice",
+     age: 22,
+     major: "Computer Science",
+     GPA: 3.8,
+     isEnrolled: true
+};
+
+//function to display information 
+
+function displayStudentInfo(student) {
+  console.log("student information:");
+  for (const property in student) {
+    console.log(`${property}: ${student[property]}`);
+  }
+}
+//call the function
+
+displayStudentInfo(student);
+output:--
+
+
+student information:
+name: Alice
+age: 22
+major: Computer Science
+GPA: 3.8
+isEnrolled: true
+
+
+
+que4.Description:
+You are tasked with building a student management system using JavaScript. The system should allow you to
+perform various operations on a list of students, including adding, updating, deleting, and displaying student
+information.
+Requirements:
+Here is an initial array of students. Each student is represented as an object with the following properties: id,
+firstName, lastName, age, and grade.
+const students = [
+  { id: 1, firstName: 'John', lastName: 'Doe', age: 20, grade: A },
+  { id: 2, firstName: 'Jane', lastName: 'Smith', age: 22, grade: B },
+  { id: 3, firstName: 'Bob', lastName: '', JOHNSON: 19, grade: A },
+];
+
+Implement the following functions using pure JavaScript (without any external libraries or frameworks):
+a. Add a Student: Create a function to add a new student to the array.
+b. Update Student Information: Create a function to update a student's information based on their id.
+c. Delete a Student: Create a function to delete a student based on their id.
+d. List All Students: Create a function to display a list of all students.
+e. Find Students by Grade: Create a function to find all students who have a specific grade.
+f. Calculate Average Age: Create a function to calculate the average age of all students using array method. 
+
+ans.
+
+const students = [
+  { id: 1, firstName: 'John', lastName: 'Doe', age: 20, grade: A },
+  { id: 2, firstName: 'Jane', lastName: 'Smith', age: 22, grade: B },
+  { id: 3, firstName: 'Bob', lastName: '', JOHNSON: 19, grade: A },
+];
+//FUNCTION TO ADD NEW Student
+
+function updateStudent(id,firstName,lastName,age,grade) {
+  students.push({id,firstName,lastName,age,grade});
+
+}
+// Function to update student information
+function updateStudent(id, updates) {
+  const student = students.find((student) => (link ) === id);
+  if (student) {
+    Object.assign(student, updates);
+  } else {
+    console.log(`Student with id ${id} not found`);
+  }
+}
+
+// Function to delete a student
+function deleteStudent(id) {
+  students = students.filter((student) => (link ) !== id);
+}
+
+// Function to list all students
+function listAllStudents() {
+  console.log(students);
+}
+
+// Function to find students by grade
+function findStudentsByGrade(grade) {
+  return students.filter((student) => student.grade === grade);
+}
+
+// Function to calculate average age
+function calculateAverageAge() {
+  return students.reduce((sum, student) => sum + student.age, 0) / students.length;
+}
+
+// Example usage
+console.log('Initial Students:');
+listAllStudents();
+
+addStudent(4, 'Alice', 'Johnson', 23, 92);
+console.log('After adding Alice:');
+listAllStudents();
+
+updateStudent(2, { firstName: 'Janet' });
+console.log('After updating Jane:');
+listAllStudents();
+
+deleteStudent(1);
+console.log('After deleting John:');
+listAllStudents();
+
+console.log('Students with grade 95:');
+console.log(findStudentsByGrade(95));
+
+console.log('Average age:', calculateAverageAge());
